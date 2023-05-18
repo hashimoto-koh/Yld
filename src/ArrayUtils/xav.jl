@@ -13,4 +13,5 @@ xav(a::AbstractArray, i::AbstractRange) = xav(a, Tuple(i))
 xav(a::AbstractArray, i::Integer...) = xav(a, i)
 
 xav(i::Union{Tuple{Vararg{<:Integer}}, AbstractRange}) = a -> xav(a, i)
+
 xav(i::Integer...) = a -> xav(a, i)
