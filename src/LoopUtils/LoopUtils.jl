@@ -10,6 +10,9 @@ export uloop, ucoop, puloop, pucoop
 include("colgen.jl")
 export fgen, colgen, mtx
 
+include("fary.jl")
+export fary, tfary
+
 include("operator.jl")
 export ⊞
 export ⩅, ⋓, ⩐, ⩏, ⊔, ⩣, ⩢, ⩖, ⩒
