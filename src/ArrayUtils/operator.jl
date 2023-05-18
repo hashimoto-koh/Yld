@@ -30,3 +30,11 @@ _to_rng(x) = x
     Iterators.product(x, y)
 
 @inline ⊗(x...) = Iterators.product(x...)
+
+###############################
+# product
+###############################
+
+@inline ×(x, y) = ⊗(x, y)
+
+@inline ×(x...) = ⊗(x...)
