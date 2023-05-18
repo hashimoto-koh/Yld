@@ -19,4 +19,7 @@ export dir
 export astp, asf4, asf8, astype
 export dtype
 
+include("exe.jl")
+export exe
+
 end
