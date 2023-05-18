@@ -18,4 +18,6 @@ export FileUtils
 include("./InfoUtils/InfoUtils.jl")
 export InfoUtils
 
+include("LoopUtils/LoopUtils.jl")
+
 end
