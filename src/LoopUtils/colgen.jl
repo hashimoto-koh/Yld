@@ -46,7 +46,7 @@ colgen(gen, fnc, val::Val; kw...) = colgen(fgen(fnc, gen), val; kw...)
 # colgen for single thread
 colgen(gen, ::Val{:colgen_single}) = colgen(gen, Val(:colgen_single_col))
 
-colgen(gen, ::Val{:colgen_single_col}) = Mild.Loop.scoop(gen.f, gen.iter) # collect(gen)
+colgen(gen, ::Val{:colgen_single_col}) = scoop(gen.f, gen.iter) # collect(gen)
 
 colgen(gen, ::Val{:colgen_single_dot}) = gen.f.(gen.iter)
 
@@ -65,7 +65,7 @@ end
 
 colgen(gen, ::Val{:colgen_thread_multi_spawn};
        nthr=Threads.nthreads()) =
-    Mild.Loop.tcoop(gen.f, gen.iter; nthr)
+    tcoop(gen.f, gen.iter; nthr)
 # begin
 # #=
 #     if length(gen.iter) <= nthr
@@ -117,7 +117,7 @@ end
 colgen(gen, ::Val{:colgen_prgrs_single}) = colgen(gen, Val(:colgen_prgrs_single_col))
 
 colgen(gen, ::Val{:colgen_prgrs_single_col}) =
-    Mild.Loop.pscoop(gen.f, gen.iter)
+    pscoop(gen.f, gen.iter)
 #=
     colgen(gen,
            _make_colgen_pbarfnc(gen),
@@ -154,7 +154,7 @@ colgen(gen, ::Val{:colgen_prgrs_thread_single_spawn}) =
 
 colgen(gen, ::Val{:colgen_prgrs_thread_multi_spawn};
        nthr=Threads.nthreads()) =
-    Mild.Loop.ptcoop(gen.f, gen.iter; nthr)
+    ptcoop(gen.f, gen.iter; nthr)
     #=
     colgen(gen,
            _make_colgen_pbarfnc(gen),
