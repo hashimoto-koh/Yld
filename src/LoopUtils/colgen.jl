@@ -26,19 +26,19 @@ Example: fgen((x,y)->x^2 + y, 4, 5:20)
 """
 fgen(fnc, gen::Base.Generator) = Base.Generator(fnc ∘ gen.f, gen.iter)
 
-fgen(fnc, itr) = Base.Generator(fnc, Wild.to_rng(itr))
-# fgen(fnc, itr) = Base.Generator(x -> x | fnc, Wild.to_rng(itr))
+fgen(fnc, itr) = Base.Generator(fnc, to_rng(itr))
+# fgen(fnc, itr) = Base.Generator(x -> x | fnc, to_rng(itr))
 #=
 fgen(fnc, itr) =
     begin
-        it = Wild.to_rng(itr)
+        it = to_rng(itr)
         f = (hasmethod(fnc, Tuple{dtype(it)})
              ? fnc
              : x -> fnc(x...))
         Base.Generator(f, it)
     end
 =#
-fgen(fnc, itrs...) = fgen(fnc, Iterators.product(map(Wild.to_rng, itrs)...))
+fgen(fnc, itrs...) = fgen(fnc, Iterators.product(map(to_rng, itrs)...))
 
 # colgen with additional func
 colgen(gen, fnc, val::Val; kw...) = colgen(fgen(fnc, gen), val; kw...)
