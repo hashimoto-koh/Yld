@@ -39,9 +39,9 @@ macro lx(ex)
 end
 
 macro idx(ex)
-    return esc(@lx(ex))
+    return esc(quote @lx(ex) end)
 end
 
 macro idv(ex)
-    return esc(@lv(ex))
+    return esc(quote @lv(ex) end)
 end
