@@ -15,4 +15,7 @@ export ArrayUtils
 include("./FileUtils/FileUtils.jl")
 export FileUtils
 
+include("./InfoUtils/InfoUtils.jl")
+export InfoUtils
+
 end
