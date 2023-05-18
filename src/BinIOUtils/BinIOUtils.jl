@@ -23,4 +23,7 @@ include("cine.jl")
 include("mraw.jl")
 include("raw.jl")
 
+import Mmap.sync!
+export sync!
+
 end
