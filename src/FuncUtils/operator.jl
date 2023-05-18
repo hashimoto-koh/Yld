@@ -29,15 +29,5 @@ Base.:|>(f::infix_func, fnc) = f.f(fnc)
 Base.:|(a, f::infix_func) = infix_func(b -> f.f(a,b))
 Base.:|(f::infix_func, fnc) = f.f(fnc)
 
-# (1:100) | fary | sqrt == fary(sqrt, 1:100)
-# (1:100) | tfary[prgrs=true] | sqrt == tfary(sqrt, 1:100; prgrs=true)
-
-Base.:|>(itr, f::Union{typeof(fgen), typeof(fary), typeof(tfary), typeof(pfary)}) =
-    infix_func(fnc -> f(fnc, itr))
-Base.:|(itr, f::Union{typeof(fgen), typeof(fary), typeof(tfary), typeof(pfary)}) =
-    infix_func(fnc -> f(fnc, itr))
-Base.getindex(f::Union{typeof(fgen), typeof(fary), typeof(tfary), typeof(pfary)};
-              ka...) = itr -> infix_func(fnc -> f(fnc, itr; ka...))
-
 # ((1:10), (2:2:20)) |dot(.+)|  (1,2) == (2:11, 4:2:22)
 dot(f) = infix_func((x,y) -> f.(x,y))
