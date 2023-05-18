@@ -2,7 +2,7 @@
 # helper
 #################################
 
-_correct_dim(i::Integer, n::Integer)
+_correct_dim(i::Integer, n::Integer) =
 begin
     # -1 => n, -2 => n-1, 0 => n+1 => 1
     i < 1 && (return _correct_dim(i+n+1, n))
