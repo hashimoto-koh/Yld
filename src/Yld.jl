@@ -24,6 +24,9 @@ export LoopUtils
 include("NTUtils/NTUtils.jl")
 export NTUtils
 
+include("BinIOUtils/BinIOUtils.jl")
+export BinIOUtils
+
 include("MathUtils/MathUtils.jl")
 export MathUtils
 
