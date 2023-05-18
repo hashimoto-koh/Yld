@@ -11,4 +11,10 @@ export gf
 include("mf.jl")
 export mf
 
+include("mfl.jl")
+export mfl
+
+include("log0.jl")
+export log0
+
 end
