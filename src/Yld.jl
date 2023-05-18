@@ -9,6 +9,9 @@ export FuncUtils
 include("./TypeUtils/TypeUtils.jl")
 export TypeUtils
 
+include("LoopUtils/LoopUtils.jl")
+export LoopUtils
+
 include("./ArrayUtils/ArrayUtils.jl")
 export ArrayUtils
 
@@ -17,9 +20,6 @@ export FileUtils
 
 include("./InfoUtils/InfoUtils.jl")
 export InfoUtils
-
-include("LoopUtils/LoopUtils.jl")
-export LoopUtils
 
 include("NTUtils/NTUtils.jl")
 export NTUtils

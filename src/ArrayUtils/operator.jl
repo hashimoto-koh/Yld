@@ -1,17 +1,12 @@
-#################################
-# helper
-#################################
-
-_to_rng(i::Integer) = i>=1 ? (1:i) : (-1:-1:i)
-_to_rng(x) = x
+import ..LoopUtils: to_rng
 
 ###############################
 # zip
 ###############################
 
-@inline ⊕(x, y) = zip(_to_rng(x), _to_rng(y))
+@inline ⊕(x, y) = zip(to_rng(x), to_rng(y))
 
-@inline ⊕(x::Base.Iterators.Zip, y) = zip(x.is..., _to_rng(y))
+@inline ⊕(x::Base.Iterators.Zip, y) = zip(x.is..., to_rng(y))
 
 @inline ⊕(x::Base.Iterators.Zip, y::Base.Iterators.Zip) = zip(x, y)
 
@@ -21,7 +16,7 @@ _to_rng(x) = x
 # product
 ###############################
 
-@inline ⊗(x, y) = Base.Iterators.product(_to_rng(x), _to_rng(y))
+@inline ⊗(x, y) = Base.Iterators.product(to_rng(x), to_rng(y))
 
 @inline ⊗(x::Base.Iterators.ProductIterator, y) =
     Iterators.product(x.iterators..., _to_rng(y))

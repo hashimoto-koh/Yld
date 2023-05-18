@@ -1,5 +1,8 @@
 module LoopUtils
 
+include("torng.jl")
+export to_rng
+
 include("loop.jl")
 export loop_range, loop_ranges, to_rng
 export  loop,  coop,  ploop,  pcoop
