@@ -1,6 +1,6 @@
-to(file::AbstractString; ka...) = (m::AbstraxtArray) -> to(m, file; ka...)
+to(file::AbstractString; ka...) = (m::AbstractArray) -> to(m, file; ka...)
 
-to(m::AbstraxtArray, file::AbstractString; ka...) =
+to(m::AbstractArray, file::AbstractString; ka...) =
 begin
     if !Base.Filesystem.isfile(file)
         f = Glob.glob(basename(file) * "*",
