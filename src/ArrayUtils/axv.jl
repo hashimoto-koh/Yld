@@ -60,3 +60,6 @@ end
 axv(a::AbstractArray, i::AbstractRange) = axv(a, Tuple(i))
 
 axv(a::AbstractArray, i::Integer...) = axview(a, i)
+
+axv(i::Union{Integer, Tuple{Vararg{<:Integer}}, AbstractRange}) = a -> axv(a, i)
+axv(i::Integer...) = a -> axv(a, i)
