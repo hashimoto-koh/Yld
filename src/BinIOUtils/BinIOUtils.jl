@@ -1,6 +1,6 @@
 module BinIOUtils
 
-import ..Info
+import ..InfoUtils
 
 include("helper.jl")
 
