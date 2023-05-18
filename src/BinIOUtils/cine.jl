@@ -133,10 +133,6 @@ fromcine(filename; prgrs=true) = begin
     fromcine(filename, 1:imagecount; prgrs)
 end
 
-_force_ext(filename::AbstractString, ext::AbstractString, forcename::Bool) =
-        (forcename || "." * ext == splitext(filename)[2]
-         ? filename : filename * "." * ext)
-
 cinetowbf(cinefile, wbffile; prgrs=true) =
 begin
     open(_force_ext(cinefile, "cine", false), "r") do fin
