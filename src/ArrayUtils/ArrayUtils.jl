@@ -6,4 +6,7 @@ export axv
 include("idxmacro.jl")
 export @lx, @lv, @rx, @rv, @idx, @idv
 
+include("operator.jl")
+export ⊕, ⊗
+
 end
