@@ -17,4 +17,7 @@ include("operator.jl")
 export ⊞
 export ⩅, ⋓, ⩐, ⩏, ⊔, ⩣, ⩢, ⩖, ⩒
 
+include("prgrsbar.jl")
+export prgrsbar, pgbar
+
 end
