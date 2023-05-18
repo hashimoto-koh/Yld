@@ -16,6 +16,12 @@ begin
 end
 
 #################################
+# mean0
+#################################
+
+mean0(m::AbstractArray) = m .- mean(m)
+
+#################################
 # lpadint
 #################################
 """
@@ -43,7 +49,8 @@ cube(x) = x * x * x
 # norm
 #################################
 
-norm(v, p=2) = begin
+norm(v, p=2) =
+begin
     p == 2 && (return sqrt(sum(square.(v))))
     p == 1 && (return sum(abs.(v)))
     p == 0 && (return count(!=(0), v))
