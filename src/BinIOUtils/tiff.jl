@@ -15,7 +15,7 @@ to(::Val{:tif}, m::AbstractMatrix, file::AbstractString; otype=nothing) = totif(
 tifdattoary(tifdat::AbstractMatrix{Gray{T}}) where T =
     permutedims(convert(Matrix{T}, tifdat), [2,1])
 
-tifdattoary(tifdat::AbstractArray{Gray{T}}, 3) where T =
+tifdattoary(tifdat::AbstractArray{Gray{T}, 3}) where T =
     permutedims(convert(Array{T,3}, tifdat), [2,1,3])
 
 tiftoary(tif) = tifdattoary(tif.data)
