@@ -39,21 +39,9 @@ macro lx(ex)
 end
 
 macro idx(ex)
-    args = ex.args
-    n = length(args)
-
-    esc(quote m -> (ndims(m) == $(n)
-                    ? m[$(args...)]
-                    : (m[$(args...), fill(:, ndims(m) - $(n))...]))
-        end)
+    return @lx(ex)
 end
 
 macro idv(ex)
-    args = ex.args
-    n = length(args)
-
-    esc(quote m -> (ndims(m) == $(n)
-                    ? m[$(args...)]
-                    : (@view m[$(args...), fill(:, ndims(m) - $(n))...]))
-        end)
+    return @lv(ex)
 end
