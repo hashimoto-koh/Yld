@@ -5,4 +5,6 @@ export info
 
 include("png.jl")
 
+include("tiff.jl")
+
 end
