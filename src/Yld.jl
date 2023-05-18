@@ -19,5 +19,9 @@ include("./InfoUtils/InfoUtils.jl")
 export InfoUtils
 
 include("LoopUtils/LoopUtils.jl")
+export LoopUtils
+
+include("MathUtils/MathUtils.jl")
+export MathUtils
 
 end
