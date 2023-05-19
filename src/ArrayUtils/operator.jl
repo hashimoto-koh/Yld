@@ -19,7 +19,7 @@ import ..LoopUtils: to_rng
 @inline ⊗(x, y) = Base.Iterators.product(to_rng(x), to_rng(y))
 
 @inline ⊗(x::Base.Iterators.ProductIterator, y) =
-    Iterators.product(x.iterators..., _to_rng(y))
+    Iterators.product(x.iterators..., to_rng(y))
 
 @inline ⊗(x::Base.Iterators.ProductIterator, y::Base.Iterators.ProductIterator) =
     Iterators.product(x, y)
