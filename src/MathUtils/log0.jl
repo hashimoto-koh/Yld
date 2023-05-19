@@ -3,7 +3,7 @@ log0(x::Real) = (x > 0) ? log(x) : log(one(x))
 log0(x::AbstractArray{<:Real}) = log0.(x)
 
 log0(x::Real, y::Real) =
-    (x > 0 &&& y > 0) ?
+    (x > 0 && y > 0) ?
     log(x) - log(y) :
     log(one(Base.promote_typeof(x, y)))
 
