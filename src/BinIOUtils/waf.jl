@@ -6,12 +6,17 @@ import Mmap
 # from
 #################################
 
-InfoUtils.info(::Val{:waf}, file::AbstractString; ka...) = waf_info(fname)
+InfoUtils.info(::Val{:waf}, file::AbstractString) = waf_info(fname)
 
-to(::Val{:waf}, m::AbstractArray, file::AbstractString; ka...) = towaf(m, file; ka...)
+to(::Val{:waf}, m::AbstractArray, file::AbstractString; outtype=nothing) =
+    towaf(m, file; outtype)
 
-from(::Val{:waf}, file::AbstractString; ka...) = fromwaf(file; ka...)
+from(::Val{:waf}, file::AbstractString;
+     mmap=true, ro=false, outtype=nothing, slice=nothing) =
+    fromwaf(file; mmap, ro, outtype, slice)
 
+
+include("waf/head.jl")
 
 include("waf/waf_info.jl")
 
@@ -20,5 +25,6 @@ include("waf/towaf.jl")
 include("waf/fromwaf.jl")
 
 include("waf/loadwaf.jl")
+export loadwaf
 
 include("waf/linktowaf.jl")

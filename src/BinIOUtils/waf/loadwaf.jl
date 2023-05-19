@@ -19,14 +19,7 @@ begin
     f = open(_force_ext(fname, "waf", forcename), "w+")
 
     # write header
-    write(f,
-          type_typeidx(T),
-          UInt16(length(shape)),
-          UInt32.(reverse(shape))...)
-    offset = 2 + 2 + 4 * length(shape)
-    nbyte = sizeof(T)
-    (offset % nbyte != 0) && [write(f, '0') for _ in 1:(nbyte-offset%nbyte)]
-
+    writehead(f, T, shape)
     # create mmap
     m = Mmap.mmap(f, Array{T,length(shape)}, Int.(shape))
 
@@ -68,17 +61,8 @@ loadwaf(fname::AbstractString; init=nothing, ro=false, forcename=false) = begin
     f = open(_force_ext(fname, "waf", forcename),
              toBool(ro) ? "r" : "r+")
 
-    tp = typeidx_type(read(f, UInt16))
-    dim = Int(read(f, UInt16))
-    shape = reverse(Tuple(Int(read(f, UInt32)) for i ∈ 1:dim))
-    offset = let
-        o = 2 + 2 + 4dim
-        nbyte = sizeof(tp)
-        (o % nbyte == 0) ? 0 : nbyte - o % nbyte
-    end
-    skip(f, offset)
+    (;tp, dim, shape, offset) = readhead(f)
     m = Mmap.mmap(f, Array{tp, dim}, shape)
-
     close(f)
 
     if !isnothing(init)

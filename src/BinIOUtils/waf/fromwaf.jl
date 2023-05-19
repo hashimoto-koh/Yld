@@ -15,13 +15,7 @@ fromwaf_nomap(fname; outtype=nothing, slice=nothing, forcename=false) = begin
     end
 
     open(_force_ext(fname, "waf", forcename)) do f
-        tp = typeidx_type(read(f, UInt16))
-        dim = read(f, UInt16)
-        shape = reverse([read(f, UInt32) for i ∈ 1:dim]) | Tuple
-        nbyte = sizeof(tp)
-        offset = 2 + 2 + 4dim
-        (offset % nbyte != 0) && skip(f, nbyte - offset % nbyte)
-
+        (;tp, dim, shape, offset) = readhead(f)
         if isnothing(slice)
             array_from_fstream(f, shape...; intype=tp, outtype=outtype)
         else
@@ -43,11 +37,7 @@ end
     return: an array from a waf file
 """
 fromwaf(fname; mmap=true, ro=false, outtype=nothing, slice=nothing, forcename=false) =
-begin
-    if toBool(mmap)
-        fromwaf_mmap(fname; ro, forcename)
-    else
+    toBool(mmap) ?
+        fromwaf_mmap(fname; ro, forcename) :
         fromwaf_nomap(fname; outtype, slice, forcename)
-    end
-end
 
