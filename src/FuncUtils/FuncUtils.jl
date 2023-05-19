@@ -19,6 +19,9 @@ export dir
 export astp, asf4, asf8, astype
 export dtype
 
+include("arg.jl")
+export arg
+
 include("exe.jl")
 export exe
 
