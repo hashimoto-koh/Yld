@@ -27,6 +27,9 @@ export newaxis
 include("addaxis.jl")
 export addaxis
 
+include("perm.jl")
+export perm, permary
+
 include("like.jl")
 export  fill_like, zeros_like, ones_like, empty_like
 
