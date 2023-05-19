@@ -1,4 +1,5 @@
 module NTUtils
+import ..InfoUtils
 
 include("KV.jl")
 

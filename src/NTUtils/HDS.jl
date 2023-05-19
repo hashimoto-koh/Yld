@@ -37,6 +37,7 @@ abstract type AbstHDS{T} <: Function end
 Base.propertynames(hds::AbstHDS) = Base.keys(hds)
 Base.hasproperty(hds::AbstHDS, p::Symbol) = p in Base.propertynames(hds)
 Base.show(io::IO, mime::MIME"text/plain", x::AbstHDS) = Base.show(io, mime, x._)
+..InfoUtils._printnmdtpl(io, d::AbstHDS, k="", str="") = ..InfoUtils._printnmdtpl(io, d._, k, str)
 Base.getkey(hds::AbstHDS, p::Symbol) = _HDS(_getkey(hds, p))
 _HDS(x) = x
 
